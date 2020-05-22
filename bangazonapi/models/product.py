@@ -5,7 +5,7 @@ from .product_type import ProductType
 class Product(models.Model):
 
     title = models.CharField(max_length=50)
-    customer_id = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.CharField(max_length=255)
     quantity = models.IntegerField()

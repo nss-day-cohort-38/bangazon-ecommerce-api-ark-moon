@@ -22,6 +22,7 @@ from bangazonapi.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
 
+
 urlpatterns = [
     path('', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),

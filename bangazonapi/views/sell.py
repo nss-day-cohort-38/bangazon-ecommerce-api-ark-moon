@@ -12,18 +12,19 @@ class SellSerializer(serializers.HyperlinkedModelSerializer):
         serializers
     """
     class Meta:
-        model: Product
+        model = Product
         url = serializers.HyperlinkedIdentityField(
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path', 'product_type')
+        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path')
+       
 
 class Sell(ViewSet):
     def create(self, request):
         newproduct = Product()
         # product type refers to a foreign key
-        product_type = ProductType.objects.get(pk=request.data["product_type_id"])
+        product_type = ProductType.objects.get(pk=request.data["product_type"])
         # customer refers to the user
         customer = Customer.objects.get(user=request.auth.user)
         # request all other data
@@ -34,7 +35,7 @@ class Sell(ViewSet):
         newproduct.location = request.data["location"] 
         newproduct.image_path = request.data["image_path"]
         # May be handling created at on the front end using Date.now()
-        # newproduct.created_at = request.data["created_at"]
+        newproduct.created_at = request.data["created_at"]
         newproduct.customer = customer
         newproduct.product_type = product_type
 

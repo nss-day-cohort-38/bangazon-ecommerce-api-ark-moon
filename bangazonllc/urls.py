@@ -21,7 +21,7 @@ from bangazonapi.models import *
 from bangazonapi.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
-
+router.register(r'sell', Sell, 'sell')
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -29,4 +29,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', register_user), 
     path('login/', login_user)
+    # path('sell/', Sell )
 ]

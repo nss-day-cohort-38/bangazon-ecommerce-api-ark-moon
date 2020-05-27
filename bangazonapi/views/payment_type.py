@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ecommerceapi.models import PaymentType, Customer
+from bangazonapi.models import PaymentType, Customer
 from datetime import datetime
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
@@ -68,4 +68,3 @@ class PaymentTypes(ViewSet):
             context={'request': request}
         )
         return Response(serializer.data)
-       

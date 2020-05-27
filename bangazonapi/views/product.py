@@ -1,27 +1,40 @@
-"""View module for handling requests about attractions"""
+"""View module for handling requests about products"""
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ecommerceapi.models import Product, PaymentType, Customer
+from ..models import Product,Customer
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for products
+
+    Arguments:
+        serializers
+    """
+    # product_type = ProductTypeSerializer()
+
     class Meta:
         model = Product
         url = serializers.HyperlinkedIdentityField(
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path', 'created_at', )
+        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path', 'customer_id', 'product_type_id', 'created_at', 'product_type')
         depth = 1
 
-
-
-#Handle GET requests for single product
-#Returns: Response -- JSON serialized
 class Products(ViewSet):
+
+    def list(self, request):
+        products = Product.objects.all()
+        # product_type = self.request.query_params.get('product_type', None)
+        # if product_type is not None:
+        #     products = products.filter(product_id=product_type)
+
+        serializer = ProductSerializer(products, many=True, context={'request': request})
+        return Response(serializer.data)
+
 
     def retrieve(self, request, pk=None):
         try:
@@ -32,23 +45,7 @@ class Products(ViewSet):
             return HttpResponseServerError(ex)
 
 
-    # Handle GET requests to products resource
-    # Returns: Response -- JSON serialized list of products
-    def list(self, request):
-
-        products = Product.objects.all()
-
-        # If product_type is provided as a query parameter, then filter list of products by product id
-        product_type = self.request.query_params.get('product_type', None)
-        if product_type is not None:
-            products = products.filter(product_id=product_type)
-
-        serializer = ProductSerializer(
-            products, many=True, context={'request': request})
-
-        return Response(serializer.data)
-
-        #Handle POST operations
+    # Handle POST operations
     def create(self, request):
         new_product = Product()
         new_product.name = request.data["title"]

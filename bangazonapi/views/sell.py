@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from bangazonapi.models import Product, Customer, ProductType
+import datetime
 
 
 class SellSerializer(serializers.HyperlinkedModelSerializer):
@@ -38,6 +39,7 @@ class Sell(ViewSet):
         newproduct.created_at = request.data["created_at"]
         newproduct.customer = customer
         newproduct.product_type = product_type
+        newproduct.created_at = datetime.now()
 
         newproduct.save()
 

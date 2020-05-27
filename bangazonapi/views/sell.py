@@ -35,7 +35,6 @@ class Sell(ViewSet):
         newproduct.quantity = request.data["quantity"] 
         newproduct.location = request.data["location"] 
         newproduct.image_path = request.data["image_path"]
-        # May be handling created at on the front end using Date.now()
         newproduct.created_at = request.data["created_at"]
         newproduct.customer = customer
         newproduct.product_type = product_type

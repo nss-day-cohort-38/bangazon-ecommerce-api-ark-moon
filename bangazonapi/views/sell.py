@@ -1,10 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from bangazonapi.models import Product, Customer, ProductType
-import datetime
+from datetime import datetime
 
 
 class SellSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,8 +18,8 @@ class SellSerializer(serializers.HyperlinkedModelSerializer):
             view_name='product',
             lookup_field='id'
         )
-        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path')
-       
+        fields = ('id', 'title', 'price', 'description', 'quantity', 'location', 'image_path', 'product_type_id')
+        depth = 1
 
 class Sell(ViewSet):
     def create(self, request):
@@ -48,3 +48,22 @@ class Sell(ViewSet):
         )
 
         return Response(serializer.data)
+    # Will list all products that can be sold
+    def list(self, request): 
+        sell_products = Product.objects.all()
+        serializer = SellSerializer(
+            sell_products, 
+            many=True, 
+            context={'request': request}
+        )
+        return Response(serializer.data)
+    # Will retrieve a specific sellable product
+    def retrieve(self, request, pk=None): 
+        try: 
+            sell_product = Product.objects.get(pk=pk)
+            serializer = SellSerializer(
+                sell_product, context={'request': request}
+            )
+            return Response(serializer.data)
+        except Exception as ex: 
+            return HttpResponseServerError(ex)

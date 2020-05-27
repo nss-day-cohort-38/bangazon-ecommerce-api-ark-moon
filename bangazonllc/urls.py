@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
+from bangazonapi.views import *
 from bangazonapi.models import *
 from bangazonapi.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'sell', Sell, 'sell')
 router.register(r'paymenttypes', PaymentTypes, 'paymenttype')
+
+router.register(r'products', Products, 'products')
+router.register(r'product-types', ProductTypes, 'producttype')
 
 urlpatterns = [
     path('', include(router.urls)),

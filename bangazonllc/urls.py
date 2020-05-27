@@ -22,7 +22,7 @@ from ecommerceapi.views import register_user, login_user, PaymentTypes, Products
 
 router = routers.DefaultRouter(trailing_slash=False) 
 router.register(r'paymenttypes', PaymentTypes, 'paymenttype')
-router.register(r'products', Products, 'products')
+# router.register(r'products', Products, 'products')
 
 
 urlpatterns = [

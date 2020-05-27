@@ -17,16 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from bangazonapi.models import *
-from bangazonapi.views import register_user, login_user, PaymentTypes
+from ecommerceapi.models import *
+from ecommerceapi.views import register_user, login_user, PaymentTypes, Products
 
 router = routers.DefaultRouter(trailing_slash=False) 
 router.register(r'paymenttypes', PaymentTypes, 'paymenttype')
+router.register(r'products', Products, 'products')
+
 
 urlpatterns = [
     path('', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('register/', register_user), 
-    path('login/', login_user)
+    path('register/', register_user),
+    path('login/', login_user),
 ]

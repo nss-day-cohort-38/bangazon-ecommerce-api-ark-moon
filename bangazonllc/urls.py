@@ -19,11 +19,17 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from ecommerceapi.models import *
 from ecommerceapi.views import register_user, login_user, PaymentTypes, Products
+# from bangazonapi.views import *
+# from bangazonapi.models import *
+# from bangazonapi.views import register_user, login_user, PaymentTypes
 
 router = routers.DefaultRouter(trailing_slash=False) 
 router.register(r'paymenttypes', PaymentTypes, 'paymenttype')
 # router.register(r'products', Products, 'products')
 
+
+router.register(r'products', Products, 'products')
+# router.register(r'product-types', ProductTypes, 'producttype')
 
 urlpatterns = [
     path('', include(router.urls)),

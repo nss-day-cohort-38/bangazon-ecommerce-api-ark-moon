@@ -20,7 +20,8 @@ class OrdertSerializer(serializers.HyperlinkedModelSerializer):
 class Orders(ViewSet):
         def list(self, request):
 
-            customer = Customer.objects.get(user=request.auth.user)
+            customer = Customer.objects.get(user=request.customer.user)
+            print("customer", customer)
 
             orders = Order.objects.filter(customer=customer)
             serializer = OrdertSerializer(orders, many=True, context={'request': request})

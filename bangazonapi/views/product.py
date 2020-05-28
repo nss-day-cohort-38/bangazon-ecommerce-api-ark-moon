@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ..models import Product,Customer
+from ..models import Product, Customer
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
@@ -28,10 +28,6 @@ class Products(ViewSet):
 
     def list(self, request):
         products = Product.objects.all()
-        # product_type = self.request.query_params.get('product_type', None)
-        # if product_type is not None:
-        #     products = products.filter(product_id=product_type)
-
         serializer = ProductSerializer(products, many=True, context={'request': request})
         return Response(serializer.data)
 
@@ -48,18 +44,22 @@ class Products(ViewSet):
     # Handle POST operations
     def create(self, request):
         new_product = Product()
-        new_product.name = request.data["title"]
-        new_product.customer = request.data["customer"]
+        print("REQUESTDATA", new_product)
+
+        customer = Customer.objects.get(user=request.auth.user)
+        product = Product.objects.get(pk=request.data["product_type"])
+        print("PRODUCT", product)
+
+        new_product.title = request.data["title"]
+        new_product.customer = customer
         new_product.description = request.data["description"]
         new_product.quantity = request.data["quantity"]
         new_product.location = request.data["location"]
         new_product.image_path = request.data["image_path"]
         new_product.created_at = request.data["created_at"]
-        new_product.product_type = request.data["product_type"]
+        new_product.product_type = product
+        print("REQUESTDATA", request.data)
 
-
-        product = Product.objects.get(pk=request.data["product_type"])
-        print("PRODUCT", product)
         new_product.product_type = product
         print("NEW_PRODUCT", new_product)
         new_product.save()
@@ -70,10 +70,11 @@ class Products(ViewSet):
     # Handle PUT requests for a park area attraction
     def update(self, request, pk=None):
         product = Product.objects.get(pk=pk)
-        customer = Customer.objects.get(pk=request.data["customer"])
+        # customer = Customer.objects.get(pk=request.data["customer"])
+        customer = Customer.objects.get(user=request.auth.user)
 
         product.name = request.data["title"]
-        product.customer = request.data["customer"]
+        product.customer = customer
         product.description = request.data["description"]
         product.quantity = request.data["quantity"]
         product.location = request.data["location"]
@@ -81,16 +82,12 @@ class Products(ViewSet):
         product.created_at = request.data["created_at"]
         product.product_type = request.data["product_type"]
 
-        product.customer = customer
+        # product.customer = customer
         product.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk=None):
-        """Handle DELETE requests for a single park are
-        Returns:
-            Response -- 200, 404, or 500 status code
-        """
         try:
             product = Product.objects.get(pk=pk)
             product.delete()

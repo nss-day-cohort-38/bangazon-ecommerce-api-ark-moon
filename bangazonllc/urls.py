@@ -17,23 +17,23 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from bangazonapi.views import *
 from bangazonapi.models import *
 from bangazonapi.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'sell', Sell, 'sell')
 router.register(r'paymenttypes', PaymentTypes, 'paymenttype')
+router.register(r'products', Products, 'products')
 router.register(r'customers', Customers, 'customer')
 router.register(r'users', Users, 'user')
-
-router.register(r'products', Products, 'products')
 router.register(r'product-types', ProductTypes, 'producttype')
+router.register(r'orders', Orders, 'orders')
+
 
 urlpatterns = [
     path('', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('register/', register_user), 
-    path('login/', login_user)
+    path('register/', register_user),
+    path('login/', login_user),
 ]

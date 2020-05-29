@@ -68,4 +68,3 @@ class PaymentTypes(ViewSet):
             context={'request': request}
         )
         return Response(serializer.data)
-       

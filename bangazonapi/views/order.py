@@ -23,7 +23,8 @@ class OrdertSerializer(serializers.HyperlinkedModelSerializer):
 class Orders(ViewSet):
     def list(self, request):
 
-        orders = Order.objects.all()
+        # changing this from Order.objects.all() to only pull the orders for the logged in user
+        orders = Order.objects.get(user=request.auth.user)
 
         serializer = OrdertSerializer(orders, many=True, context={'request': request})
         return Response(serializer.data)

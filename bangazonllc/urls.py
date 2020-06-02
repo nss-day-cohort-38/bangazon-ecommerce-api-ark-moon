@@ -27,7 +27,8 @@ router.register(r'products', Products, 'products')
 router.register(r'customers', Customers, 'customer')
 router.register(r'users', Users, 'user')
 router.register(r'product-types', ProductTypes, 'producttype')
-router.register(r'orders', Orders, 'orders')
+router.register(r'orders', Orders, 'order')
+router.register(r'orderproducts', OrderProducts, 'orderproduct')
 
 
 urlpatterns = [

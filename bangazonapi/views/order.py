@@ -4,8 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ..models import Product, Customer, Order, PaymentType
-from django.contrib.auth.models import User
+from ..models import Customer, Order
 from datetime import datetime
 
 
@@ -14,7 +13,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         url = serializers.HyperlinkedIdentityField(
-            view_name='orders',
+            view_name='order',
             lookup_field='id'
         )
         fields = ('id', 'customer', 'payment_type', 'created_at', )

@@ -14,7 +14,7 @@ class OrderProductSerializer(serializers.HyperlinkedModelSerializer):
             view_name='orderproduct',
             lookup_field='id'
         )
-        fields = ('id', 'order_id', 'product_id')
+        fields = ('id', 'order_id', 'product_id', 'product')
         depth = 1
 
 
@@ -23,7 +23,12 @@ class OrderProducts(ViewSet):
 
         order_products = OrderProduct.objects.all()
 
+        order_id = self.request.query_params.get('order_id', None)
+
+        if order_id is not None:
+            order_products = order_products.filter(order_id = order_id)
         serializer = OrderProductSerializer(order_products, many=True, context={'request': request})
+
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):

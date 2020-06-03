@@ -37,8 +37,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', register_user),
     path('login/', login_user),
-]
+] 
+# Since there is no route to media folder, 
+# This is a static route to the media folder
 
-
-if settings.DEBUG:
-  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

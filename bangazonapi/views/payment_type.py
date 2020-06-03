@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from bangazonapi.models import PaymentType, Customer
+from django.contrib.auth.models import User
 from datetime import datetime
 
 class PaymentTypeSerializer(serializers.HyperlinkedModelSerializer):
@@ -61,7 +62,8 @@ class PaymentTypes(ViewSet):
 
     def list(self, request):
 
-        payment_types = PaymentType.objects.all()
+        customer = Customer.objects.get(user=request.auth.user)
+        payment_types = PaymentType.objects.filter(customer=customer)
         serializer = PaymentTypeSerializer(
             payment_types,
             many=True,

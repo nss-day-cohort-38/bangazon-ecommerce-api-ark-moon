@@ -36,21 +36,36 @@ class TestOrderProducts(TestCase):
 
         self.assertEqual(OrderProduct.objects.get(id=1).order_id, new_order_product["order_id"])
 
-    # def testGetOrder(self):
-    #     new_order_product = OrderProduct.objects.create(
-    #         order_id=1,
-    #         product_id=1
-    #     )
+    def testGetOrder(self):
+        new_order_product = OrderProduct.objects.create(
+            order_id=1,
+            product_id=1
+        )
         
-    #     response = self.client.get(
-    #         reverse('orderproduct-list'), HTTP_AUTHORIZATION='Token ' + str(self.token))
+        response = self.client.get(
+            reverse('orderproduct-list'), HTTP_AUTHORIZATION='Token ' + str(self.token))
 
-    #     self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
-    #     self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data), 1)
 
-    #     self.assertEqual(response.data[0]["id"], 1)
-    #     self.assertEqual(response.data[0]["order_id"], new_order_product.order_id)
+        self.assertEqual(response.data[0]["id"], 1)
+        self.assertEqual(response.data[0]["order_id"], new_order_product.order_id)
+
+    def testDeleteOrder(self):
+        new_order_product = OrderProduct.objects.create(
+            order_id=1,
+            product_id=1
+        )
+
+        response = self.client.delete(
+            reverse('orderproduct-detail', kwargs={'pk': 1}), HTTP_AUTHORIZATION='Token ' + str(self.token))
+
+        self.assertEqual(response.status_code, 204)
+
+        response = self.client.get(
+            reverse('orderproduct-list'), HTTP_AUTHORIZATION='Token ' + str(self.token))
+        self.assertEqual(len(response.data), 0)
 
 
 if __name__ == '__main__':

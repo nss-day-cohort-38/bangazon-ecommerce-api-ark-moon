@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework.authtoken.views import obtain_auth_token
 from bangazonapi.models import *
 from bangazonapi.views import *
@@ -29,11 +31,14 @@ router.register(r'users', Users, 'user')
 router.register(r'product-types', ProductTypes, 'producttype')
 router.register(r'orders', Orders, 'orders')
 
-
 urlpatterns = [
     path('', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', register_user),
     path('login/', login_user),
-]
+] 
+# Since there is no route to media folder, 
+# This is a static route to the media folder
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

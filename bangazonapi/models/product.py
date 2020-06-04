@@ -10,13 +10,13 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     quantity = models.IntegerField()
     location = models.CharField(max_length=75)
-    image_path = models.CharField(max_length=255)
+    image_path = models.FileField(blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     product_type = models.ForeignKey(ProductType, on_delete=models.DO_NOTHING)
 
     class Meta:
         ordering = ("title",)
 
-    def __str__(self):
+    def __str__(self): 
         return self.title
 

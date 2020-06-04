@@ -5,6 +5,8 @@ from rest_framework import serializers
 from rest_framework import status
 from bangazonapi.models import Product, Customer, ProductType
 from datetime import datetime
+from rest_framework.parsers import FileUploadParser, MultiPartParser, JSONParser, FormParser
+from rest_framework.views import APIView
 
 
 class SellSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,8 +25,10 @@ class SellSerializer(serializers.HyperlinkedModelSerializer):
        
 
 class Sell(ViewSet):
-    def create(self, request):
-        print(request.data)
+    # Setting up parsers for the entire viewset
+    parser_classes = (MultiPartParser, FormParser, JSONParser,)
+    # Format=none specifies that the incoming data is NOT JSON 
+    def create(self, request, format=None):
         newproduct = Product()
         # product type refers to a foreign key
         product_type = ProductType.objects.get(pk=request.data["product_type"])

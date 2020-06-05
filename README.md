@@ -127,6 +127,7 @@ When the user requests information from the products viewset, the API returns a 
 When the user does a post request with a valid auth token, the body of the request will be posted to the database.
 
 IMPORTANT NOTE: When posting in Postman, use the "form-data" body format instead of raw JSON. This will allow for the easier uploading of files for images. Example:
+![post in sell](https://github.com/nss-day-cohort-38/bangazon-ecommerce-api-ark-moon/blob/JP-read-me/bangazonapi/images/BangazonPostmanPostProductBody.png)
 
 ## Contributors
 

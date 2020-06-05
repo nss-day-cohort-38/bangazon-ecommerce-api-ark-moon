@@ -44,7 +44,7 @@ python manage.py runserver
 ## Testing in Postman
 
 ### Registration
-1. First things, first you will need an authorization token to successfully request data from the databse. To obtain one, you will need to post to ```localhost:8000/register/``` with the following HTTP request:
+1. First things first, you will need an authorization token to successfully request data from the database. To obtain one, you will need to post to ```localhost:8000/register/``` with the following HTTP request:
 ```
 {
 	"username":"test",
@@ -56,7 +56,7 @@ python manage.py runserver
 	"password":"test"
 }
 ```
-This will return a token object that will serve as your authorization token. Now that you have this token, you can include header with the key "Authorization" with a value of "Token ${your-token here}". This will allow you to use the available functionality for each of the available viewsets.
+This will return a token object that will serve as your authorization token. Now that you have this token, you can include a header with the key "Authorization" and a value of "Token ${your-token here}". This will allow you to use the available functionality for each of the available viewsets.
 
 ![Postman Headers](https://github.com/nss-day-cohort-38/bangazon-ecommerce-api-ark-moon/blob/JP-read-me/bangazonapi/images/BangazonPostmanHeaders.png)
 
@@ -88,7 +88,7 @@ There is automatated unit testing available for this viewset. Run ```python mana
 
 #### GET
 
-When you perform a get request with a valid auth token, the API will return a list of all of the orders ASSOCIATED WITH THAT USER'S AUTH TOKEN. It is not possible in this database to get a list of all of the order. However, it is possible to obtain the information for a specific order regardless of auth status by using the order's Id, eg. ```orders/1```.
+When you perform a get request with a valid auth token, the API will return a list of all of the orders ASSOCIATED WITH THAT USER'S AUTH TOKEN. It is not possible in this database to get a list of all of the orders. However, it is possible to obtain the information for a specific order regardless of auth status by using the order's id, eg. ```orders/1```.
 
 #### POST
 

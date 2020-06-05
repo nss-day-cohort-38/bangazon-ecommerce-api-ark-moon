@@ -112,7 +112,21 @@ When the user performs a post with an auth token in the headers and a body of ``
 
 #### DELETE
 
-When the user performs a delete request on a specific incidence of payment type, the payment type will be deleted from the database
+When the user performs a delete request on a specific incidence of payment type, the payment type will be deleted from the database.
+
+### ```/products```
+
+#### GET
+
+When the user requests information from the products viewset, the API returns a list of all products currently in the database. The user can also retrieve instances of individual products by using ```products/{product-id}```.
+
+### ```/sell```
+
+#### POST
+
+When the user does a post request with a valid auth token, the body of the request will be posted to the database.
+
+IMPORTANT NOTE: When posting in Postman, use the "form-data" body format instead of raw JSON. This will allow for the easier uploading of files for images. Example:
 
 ## Contributors
 

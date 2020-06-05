@@ -68,6 +68,8 @@ When you perform a get request with a valid auth token on customers, you will be
 
 ### ```/orderproducts```
 
+There is automatated unit testing available for this viewset. Run ```python manage.py test``` to execute testing.
+
 #### GET
 
 When you perform a get request, the request will return a list of all the order-product relationships present in that. You can also call individual instances by using /{order-product-id}.
@@ -79,6 +81,26 @@ When you perform a request with the body of ```{order_id: x, product_id: x}```, 
 #### DELETE
 
 When you perform a delete request on a specific instance of orderproduct, for example ```orderproducts/1```, the relationship will be permanently removed from the database.
+
+### ```/orders```
+
+There is automatated unit testing available for this viewset. Run ```python manage.py test``` to execute testing.
+
+#### GET
+
+When you perform a get request with a valid auth token, the API will return a list of all of the orders ASSOCIATED WITH THAT USER'S AUTH TOKEN. It is not possible in this database to get a list of all of the order. However, it is possible to obtain the information for a specific order regardless of auth status by using the order's Id, eg. ```orders/1```.
+
+#### POST
+
+When a user performs a post with the body ```{}``` and with a valid auth token in the headers, a new order using the customer information provided by the auth token will be added to the database.
+
+#### DELETE
+
+When the user performs a delete on an instance of order, the data will be removed from the database and an empty object will be returned to the user.
+
+### ```/paymenttypes
+
+There is automatated unit testing available for this viewset. Run ```python manage.py test``` to execute testing.
 
 ## Contributors
 

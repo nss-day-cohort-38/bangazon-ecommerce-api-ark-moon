@@ -4,7 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from ..models import Customer, Order
+from ..models import Customer, Order, PaymentType
 from datetime import datetime
 
 
@@ -54,6 +54,14 @@ class Orders(ViewSet):
 
         serializer = OrderSerializer(new_order, context={'request': request})
         return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        order = Order.objects.get(pk=pk)
+
+        payment_type = PaymentType.objects.get(pk=request.data["payment_type_id"])
+        order.payment_type = payment_type
+
+        order.save()
 
     def destroy(self, request, pk=None):
         

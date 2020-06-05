@@ -35,7 +35,26 @@ This will create database structures using the models built in the models direct
 python manage.py migrate
 ```
 This will transport those structures into a newly created database.
+
 6. Start up your server with this command:
 ```
 python manage.py runserver
 ```
+
+## Testing in Postman
+
+### Registration
+1. First things, first you will need an authorization token to successfully request data from the databse. To obtain one, you will need to post to ```localhost:8000/register/``` with the following HTTP request:
+```
+{
+	"username":"test",
+	"first_name":"test",
+	"last_name":"test",
+	"email":"test@test",
+	"address":"test",
+	"phone_number":"test",
+	"password":"test"
+}
+```
+This will return a token object that will serve as your authorization token. Now that you have this token, you can include header with the key "Authorization" with a value of "Token ${your-token here}". This will allow you to use the available functionality for each of the available viewsets.
+

@@ -1,16 +1,41 @@
-# Bangazon Django App Project Setup
+### Bangazon API
 
-1. Clone down the repo and `cd` into it
-1. Set up your virtual environment:
-    `python -m venv bangazonEnv`
-1. Activate virtual environment:
-    `source ./bangazonEnv/bin/activate`
-1. Install dependencies:
-    `pip install -r requirements.txt`
-1. Run migrations:
-    `python manage.py migrate`
-1. `python manage.py runserver`
-1. Create your application for your API, named `ecommerceapi`
+Built using Python, Django, and the Django REST Framewor for serving data to the related [client-side application](https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-ark-moon) via HTTP request.
 
-## ERD
-Here is your [Bangazon eCommerce ERD](https://dbdiagram.io/d/5eb4d6d639d18f5553fedfb5). There should be no changes made to your ERD without approval from your product manager.
+# Our ERD:
+
+![bangazon ERD](./bangazon-ecommerce-api-ark-moon/bangazonapi/images/BangazonERD_TheArkMoon.png)
+
+# How to access
+
+1. Clone down this repository and navigate into it in your terminal.
+2. Create a virtual environment with the following command
+```
+python -m venv bangazonEnv
+```
+3. Start your virtual environment with the following commands:
+* For Mac Users:
+```
+source ./bangazonEnv/bin/activate
+```
+* For Windows Users:
+```
+source ./bangazonEnv/Scripts/activate
+```
+4. Run the following command to install all of the necessary dependencies:
+```
+pip install -r requirements.txt
+```
+5. Now that you have created a virtual envirnonment and installed the necessary dependencies inside it, you can now run the following commands:
+```
+python manage.py makemigrations
+```
+This will create database structures using the models built in the models directory.
+```
+python manage.py migrate
+```
+This will transport those structures into a newly created database.
+6. Start up your server with this command:
+```
+python manage.py runserver
+```

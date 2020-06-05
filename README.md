@@ -1,6 +1,6 @@
 # Bangazon API
 
-Built using Python, Django, and the Django REST Framewor for serving data to the related [client-side application](https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-ark-moon) via HTTP request.
+Built using Python, Django, and the Django REST Framework for serving data to the related [client-side application](https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-ark-moon) via HTTP request.
 
 ## Our ERD:
 

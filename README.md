@@ -120,6 +120,10 @@ When the user performs a delete request on a specific incidence of payment type,
 
 When the user requests information from the products viewset, the API returns a list of all products currently in the database. The user can also retrieve instances of individual products by using ```products/{product-id}```.
 
+#### DELETE
+
+When the user performs a delete request on an example of a product, the product is cleared from the database.
+
 ### ```/sell```
 
 #### POST
@@ -131,10 +135,9 @@ IMPORTANT NOTE: When posting in Postman, use the "form-data" body format instead
 
 ## Contributors
 
-* Sofia Candiani
-* Matt Crook
-* Jeremy Mattingly
-* Landon Morgan
-* Alyssa Nycum
-* Jack Parsons
-
+* [Sofia Candiani](https://github.com/sncandiani)
+* [Matt Crook](https://github.com/mattcrook)
+* [Jeremy Mattingly](https://github.com/halcyonvagabond)
+* [Landon Morgan](https://github.com/Iandonmorgan)
+* [Alyssa Nycum](https://github.com/alyssanycum)
+* [Jack Parsons](https://github.com/jcksnparsons)

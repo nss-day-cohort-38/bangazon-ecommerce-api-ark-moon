@@ -4,7 +4,7 @@ Built using Python, Django, and the Django REST Framewor for serving data to the
 
 ## Our ERD:
 
-![bangazon ERD](https://files.slack.com/files-pri/T03F2SDTJ-F014HJTGGU9/bangazonerd_thearkmoon.png)
+![bangazon ERD](https://github.com/nss-day-cohort-38/bangazon-ecommerce-api-ark-moon/blob/JP-read-me/bangazonapi/images/BangazonERD_TheArkMoon.png)
 
 ## How to access
 

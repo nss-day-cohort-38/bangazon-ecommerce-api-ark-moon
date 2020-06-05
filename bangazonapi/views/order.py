@@ -16,7 +16,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             view_name='order',
             lookup_field='id'
         )
-        fields = ('id', 'customer', 'customer_id', 'payment_type', 'created_at', )
+        fields = ('id', 'customer_id', 'customer', 'payment_type_id', 'payment_type', 'created_at')
         depth = 1
 
 
@@ -62,6 +62,8 @@ class Orders(ViewSet):
         order.payment_type = payment_type
 
         order.save()
+
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk=None):
         

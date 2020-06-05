@@ -1,12 +1,12 @@
-### Bangazon API
+# Bangazon API
 
 Built using Python, Django, and the Django REST Framewor for serving data to the related [client-side application](https://github.com/nss-day-cohort-38/bangazon-ecommerce-web-app-ark-moon) via HTTP request.
 
-# Our ERD:
+## Our ERD:
 
-![bangazon ERD](./bangazon-ecommerce-api-ark-moon/bangazonapi/images/BangazonERD_TheArkMoon.png)
+![bangazon ERD](https://files.slack.com/files-pri/T03F2SDTJ-F014HJTGGU9/bangazonerd_thearkmoon.png)
 
-# How to access
+## How to access
 
 1. Clone down this repository and navigate into it in your terminal.
 2. Create a virtual environment with the following command

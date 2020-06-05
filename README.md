@@ -60,3 +60,30 @@ This will return a token object that will serve as your authorization token. Now
 
 ### ```/customers```
 
+#### GET
+
+When you perform a get request with a valid auth token on customers, you will be provided with a list of all the customers in your database. You can also get the information for individual customers by using /{customer-id} e.g. ```/1```, ```/2```, etc.
+
+### ```/orderproducts```
+
+#### GET
+
+When you perform a get request, the request will return a list of all the order-product relationships present in that. You can also call individual instances by using /{order-product-id}.
+
+#### POST
+
+When you perform a request with the body of ```{order_id: x, product_id: x}```, the new information will be added to the database. NOTE: There must be order and product already in the database for this to work. Otherwise it will fail the not null constraint.
+
+#### DELETE
+
+When you perform a delete request on a specific instance of orderproduct, for example ```orderproducts/1```, the relationship will be permanently removed from the database.
+
+## Contributors
+
+* Sofia Candiani
+* Matt Crook
+* Jeremy Mattingly
+* Landon Morgan
+* Alyssa Nycum
+* Jack Parsons
+

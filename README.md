@@ -98,9 +98,21 @@ When a user performs a post with the body ```{}``` and with a valid auth token i
 
 When the user performs a delete on an instance of order, the data will be removed from the database and an empty object will be returned to the user.
 
-### ```/paymenttypes
+### ```/paymenttypes```
 
 There is automatated unit testing available for this viewset. Run ```python manage.py test``` to execute testing.
+
+#### GET
+
+When you perform a get request with a valid auth token, the API will return a list of payment types associated with the user's auth token. IT IS NOT POSSIBLE TO GET A LIST OF ALL PAYMENT TYPES. However, one can currently get individual payment types without an auth token. This a security fix that will be patched in a later update.
+
+#### POST
+
+When the user performs a post with an auth token in the headers and a body of ```{"merchant_name": "test", "account_number": "test", "expiration_date": "test"}```, that information will be added to the database.
+
+#### DELETE
+
+When the user performs a delete request on a specific incidence of payment type, the payment type will be deleted from the database
 
 ## Contributors
 

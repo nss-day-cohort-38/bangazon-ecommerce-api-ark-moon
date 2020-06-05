@@ -58,3 +58,5 @@ python manage.py runserver
 ```
 This will return a token object that will serve as your authorization token. Now that you have this token, you can include header with the key "Authorization" with a value of "Token ${your-token here}". This will allow you to use the available functionality for each of the available viewsets.
 
+### ```/customers```
+

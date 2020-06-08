@@ -120,6 +120,10 @@ When the user performs a delete request on a specific incidence of payment type,
 
 When the user requests information from the products viewset, the API returns a list of all products currently in the database. The user can also retrieve instances of individual products by using ```products/{product-id}```.
 
+#### PATCH
+
+Used to change the quantity in the product object. When the user performs a patch request with a body of ```{"quantity": {any-integer}}```, the product is updated with the new quantity. Used on the front end to subtract from the quantity of products that are currently in inventory once an order is completed.
+
 #### DELETE
 
 When the user performs a delete request on an example of a product, the product is cleared from the database.

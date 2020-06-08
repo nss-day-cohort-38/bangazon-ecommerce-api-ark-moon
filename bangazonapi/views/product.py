@@ -87,6 +87,17 @@ class Products(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
+    def patch(self, request, pk=None):
+        try:
+            product = Product.objects.get(pk=pk)
+            product.quantity = request.data["quantity"]
+            serializer = ProductSerializer(product, context={'request': request}, partial=True)
+            product.save()
+            return Response(status=status.HTTP_201_CREATED, data=serializer.data)
+            
+        except Product.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     def destroy(self, request, pk=None):
         try:
             product = Product.objects.get(pk=pk)
